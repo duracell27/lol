@@ -1,17 +1,16 @@
-import React, {useContext} from 'react';
-import { FieldContext } from '../context/fieldContext';
-import { Field } from '../componets/Field';
+import React, { useContext } from "react";
+import { FieldContext } from "../context/fieldContext";
+import { Field } from "../componets/Field";
 function Home() {
-    const {fieldsCount} = useContext(FieldContext)
-    let fieldsRender = [];
-    for(let i; i < fieldsCount; i++){
-        fieldsRender.push(<Field/>)
-    }
-    console.log(fieldsRender)
+  const { fields, addField } = useContext(FieldContext);
+
   return (
     <div>
       <h1>Home page</h1>
-      {/* {fieldsRender} */}
+      {fields.map((field) => (
+        <Field fieldInfo={field}/>
+      ))}
+      <button onClick={addField}>Add Field</button>
     </div>
   );
 }
