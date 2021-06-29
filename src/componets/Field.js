@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FieldContext } from "../context/fieldContext";
+import { FieldContext } from "../context/field/fieldContext";
 import cls from "./field.module.css";
 
 export const Field = ({ fieldInfo }) => {

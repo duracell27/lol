@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { FieldContext } from "./fieldContext";
 import { fieldReducer } from "./fieldReducer";
-import { ADD_FIELD, CHANGE_ACTION_ID } from "./types";
+import { ADD_FIELD, CHANGE_ACTION_ID } from "../types";
 
 export const FieldState = ({ children }) => {
   const initialState = {
