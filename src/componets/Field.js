@@ -22,7 +22,7 @@ export const Field = ({ fieldInfo }) => {
             : fieldInfo.actionId == 1 ||
               fieldInfo.actionId == 2 ||
               fieldInfo.actionId == 3
-            ? "/img/goroh_new.jpg"
+            ? "/img/goroh.jpg"
             : "/img/dirt2_new.jpg"
         }
       ></img>

@@ -6,9 +6,9 @@ import { ADD_FIELD, CHANGE_ACTION_ID } from "../types";
 export const FieldState = ({ children }) => {
   const initialState = {
     fields: [
-      { id: 1, actionId: 0 },
-      { id: 2, actionId: 0 },
-      { id: 3, actionId: 0 },
+      { id: 1, actionId: 0, plantId: null, manuringId: null },
+      { id: 2, actionId: 0, plantId: null, manuringId: null },
+      { id: 3, actionId: 0, plantId: null, manuringId: null },
     ],
   };
 
