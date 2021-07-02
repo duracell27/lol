@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useReducer} from "react";
 import { PlantContext } from "./plantContext";
+import { plantReducer } from "./plantReducer";
 
-export const PlantsState = ({ children }) => {
+export const PlantState = ({ children }) => {
   const initialState = {
     plants: [
       {
@@ -10,6 +11,7 @@ export const PlantsState = ({ children }) => {
         timeHarvest: 60,
         timeWater: 10,
         timeManuring: 25,
+        img: "goroh.jpg",
       },
       {
         id: 1,
@@ -17,9 +19,30 @@ export const PlantsState = ({ children }) => {
         timeHarvest: 90,
         timeWater: 15,
         timeManuring: 30,
+        img: "luk.jpg",
+      },
+    ],
+    manuring: [
+      {
+        id: 0,
+        name: "Салітра",
+        timeReduce: 20,
+        img: "salitra.png",
+      },
+      {
+        id: 0,
+        name: "Компост",
+        timeReduce: 30,
+        img: "kompost.png",
       },
     ],
   };
-  const [state, dispatch] = useReducer(reducer, initialState);
-  return <PlantContext.Provider value={{}}>{children}</PlantContext.Provider>;
+  const [state, dispatch] = useReducer(plantReducer, initialState);
+  return (
+    <PlantContext.Provider
+      value={{ plants: state.plants, manuring: state.manuring }}
+    >
+      {children}
+    </PlantContext.Provider>
+  );
 };
