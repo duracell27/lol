@@ -1,3 +1,5 @@
 export const ADD_FIELD = 'ADD_FIELD'
 export const CHANGE_ACTION_ID = 'CHANGE_ACTION_ID'
+export const SET_DEFAULT_PLANT = 'SET_DEFAULT_PLANT'
+export const SET_DEFAULT_MANUR = 'SET_DEFAULT_MANUR'
 // export const MINUS_COINS = 'MINUS_COINS'

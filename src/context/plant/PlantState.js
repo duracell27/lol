@@ -1,4 +1,5 @@
-import React, {useReducer} from "react";
+import React, { useContext, useReducer } from "react";
+import { GlobalContext } from "../global/globalContext";
 import { PlantContext } from "./plantContext";
 import { plantReducer } from "./plantReducer";
 
@@ -30,7 +31,7 @@ export const PlantState = ({ children }) => {
         img: "salitra.png",
       },
       {
-        id: 0,
+        id: 1,
         name: "Компост",
         timeReduce: 30,
         img: "kompost.png",
@@ -38,9 +39,26 @@ export const PlantState = ({ children }) => {
     ],
   };
   const [state, dispatch] = useReducer(plantReducer, initialState);
+  const { setActivePlant, setActiveManur } = useContext(GlobalContext);
+
+  const setDefaultPlant = (id) => {
+    const activePlant = state.plants[id];
+    setActivePlant(activePlant);
+  };
+
+  const setDefaultManur = (id) => {
+    const activeManur = state.manuring[id];
+    setActiveManur(activeManur);
+  };
+
   return (
     <PlantContext.Provider
-      value={{ plants: state.plants, manuring: state.manuring }}
+      value={{
+        setDefaultPlant,
+        setDefaultManur,
+        plants: state.plants,
+        manuring: state.manuring,
+      }}
     >
       {children}
     </PlantContext.Provider>

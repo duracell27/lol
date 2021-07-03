@@ -7,9 +7,9 @@ export const Field = ({ fieldInfo }) => {
   const { changeAction } = useContext(FieldContext);
   const { defPlant, defManuring } = useContext(GlobalContext);
   const actionNames = {
-    0: defPlant ? `Посадити ${defPlant}`: `Посадити`,
+    0: defPlant ? `Посадити ${defPlant.name}`: `Посадити`,
     1: "Полити",
-    2: defManuring ? `Удобрити ${defManuring}`: `Удобрити`,
+    2: defManuring ? `Удобрити ${defManuring.name}`: `Удобрити`,
     3: "Зібрати",
     4: "Вскопати",
   };

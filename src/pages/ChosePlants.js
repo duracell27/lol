@@ -8,10 +8,10 @@ function ChosePlant() {
   return (
     <div>
       <h1>Plants / Manuring Page</h1>
-      <p>Plants</p>
-        {plants.map(plant=>(<PlantField plantFieldInfo={plant}/>))}
-        <p>Manuring</p>
-        {manuring.map(manur=>(<PlantField manurFieldInfo={manur}/>))}
+      <h3>Plants</h3>
+        {plants.map(plant=>(<PlantField key={plant.id} plantFieldInfo={plant}/>))}
+        <h3>Manuring</h3>
+        {manuring.map(manur=>(<PlantField key={manur.id} manurFieldInfo={manur}/>))}
     </div>
   );
 }
