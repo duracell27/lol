@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FieldContext } from "../context/field/fieldContext";
 import { Field } from "../componets/Field";
 import { GlobalContext } from "../context/global/globalContext";
+import {Link} from 'react-router-dom'
 function Home() {
   const { fields, addField } = useContext(FieldContext);
   const { gold, exp, defPlant, defManuring } = useContext(GlobalContext);
@@ -15,8 +16,11 @@ function Home() {
       ))}
       <button onClick={addField}>Add Field</button>
       <div>
-        <p>Змінити рослину {defPlant ? defPlant.name: null}</p>
-        <p>Змінити удобрення {defManuring ? defManuring.name : null}</p>
+      
+        <p>
+        <Link to="/chosePlant">Змінити рослину {defPlant ? defPlant.name: null}</Link></p>
+          
+        <p><Link to="/chosePlant">Змінити удобрення  {defManuring ? defManuring.name : null}</Link></p>
       </div>
     </div>
   );
