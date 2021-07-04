@@ -13,6 +13,13 @@ export const PlantState = ({ children }) => {
         timeWater: 10,
         timeManuring: 25,
         img: "goroh.jpg",
+        exp:{
+          0: 30,
+          1: 10,
+          2: 20,
+          3: 50,
+          4: 10,
+        }
       },
       {
         id: 1,
@@ -21,6 +28,13 @@ export const PlantState = ({ children }) => {
         timeWater: 15,
         timeManuring: 30,
         img: "luk.jpg",
+        exp:{
+          0: 50,
+          1: 30,
+          2: 50,
+          3: 80,
+          4: 30,
+        }
       },
     ],
     manuring: [

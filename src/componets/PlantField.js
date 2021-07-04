@@ -3,6 +3,7 @@ import { PlantContext } from "../context/plant/plantContext";
 import cls from "./plantField.module.css";
 import { useHistory } from "react-router-dom";
 
+
 const Plant = ({ plant }) => {
   const { setDefaultPlant } = useContext(PlantContext);
   const history = useHistory();

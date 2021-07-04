@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalContext } from "./globalContext";
 import { globalReducer } from "./globalReducer";
 import { useReducer } from "react";
-import { SET_DEFAULT_MANUR, SET_DEFAULT_PLANT } from "../types";
+import { ADD_FIELD, SET_DEFAULT_MANUR, SET_DEFAULT_PLANT } from "../types";
 
 export const GlobalState = ({ children }) => {
   const initialState = {
@@ -22,6 +22,10 @@ export const GlobalState = ({ children }) => {
     dispatch({type: SET_DEFAULT_MANUR, activeManur})
   }
 
+  const addExp = (exp)=>{
+    dispatch({type: ADD_FIELD, exp})
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -30,7 +34,8 @@ export const GlobalState = ({ children }) => {
         defPlant: state.defPlant,
         defManuring: state.defManuring,
         setActivePlant,
-        setActiveManur
+        setActiveManur,
+        addExp
       }}
     >
       {children}

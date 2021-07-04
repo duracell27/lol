@@ -25,6 +25,7 @@ export const FieldState = ({ children }) => {
 
   const changeAction = (id) => {
     const changedFields = state.fields.map((field) => {
+      console.log(field.actionId)
       if (field.id === id) {
         if (field.actionId < 4) {
           field.actionId++;
