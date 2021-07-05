@@ -1,18 +1,23 @@
 import React, { useContext } from "react";
 import { PlantContext } from "../context/plant/plantContext";
 import cls from "./plantField.module.css";
-import { useHistory } from "react-router-dom";
-
+import { GlobalContext } from "../context/global/globalContext";
 
 const Plant = ({ plant }) => {
   const { setDefaultPlant } = useContext(PlantContext);
-  const history = useHistory();
+  const { defPlant } = useContext(GlobalContext);
   const plantClickHandler = () => {
     setDefaultPlant(plant.id);
-    history.push("/home");
   };
+
+  const clases = defPlant
+    ? defPlant.id === plant.id
+      ? `${cls.wrapper} ${cls.active}`
+      : `${cls.wrapper}`
+    : `${cls.wrapper}`;
+
   return (
-    <div className={cls.wrapper}>
+    <div className={clases}>
       <img src={`/img/${plant.img}`} alt={"plantCard"} />
       <div>
         <h3>{plant.name}</h3>
@@ -26,8 +31,14 @@ const Plant = ({ plant }) => {
 };
 const Manur = ({ manur }) => {
   const { setDefaultManur } = useContext(PlantContext);
+  const { defManuring } = useContext(GlobalContext);
+  const clases = defManuring
+    ? defManuring.id === manur.id
+      ? `${cls.wrapper} ${cls.active}`
+      : `${cls.wrapper}`
+    : `${cls.wrapper}`;
   return (
-    <div className={`${cls.wrapper}`}>
+    <div className={clases}>
       <img src={`/img/${manur.img}`} alt={"plantCard"} />
       <div>
         <h3>{manur.name}</h3>
