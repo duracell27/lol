@@ -40,8 +40,7 @@ export const FieldState = ({ children }) => {
   };
 
   const setPlantId = (plantDefId, fieldId) => {
-    console.log('here def', plantDefId)
-    console.log('here field', fieldId)
+    
     dispatch({type: SET_PLANT_ID, plantDefId, fieldId})
   }
 
