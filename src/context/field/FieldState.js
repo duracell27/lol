@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { FieldContext } from "./fieldContext";
 import { fieldReducer } from "./fieldReducer";
-import { ADD_FIELD, CHANGE_ACTION_ID } from "../types";
+import { ADD_FIELD, CHANGE_ACTION_ID, SET_PLANT_ID } from "../types";
 
 export const FieldState = ({ children }) => {
   const initialState = {
@@ -39,9 +39,15 @@ export const FieldState = ({ children }) => {
     dispatch({ type: CHANGE_ACTION_ID, changedFields });
   };
 
+  const setPlantId = (plantDefId, fieldId) => {
+    console.log('here def', plantDefId)
+    console.log('here field', fieldId)
+    dispatch({type: SET_PLANT_ID, plantDefId, fieldId})
+  }
+
   return (
     <FieldContext.Provider
-      value={{ addField, changeAction, fields: state.fields }}
+      value={{ addField, changeAction, setPlantId, fields: state.fields }}
     >
       {children}
     </FieldContext.Provider>

@@ -7,24 +7,30 @@ import { FieldState } from "./context/field/FieldState";
 import { GlobalState } from "./context/global/GlobalState";
 import ChosePlants from "./pages/ChosePlants";
 import { PlantState } from "./context/plant/PlantState";
+import Werehouse from './pages/Werehouse'
+import { WerehouseState } from "./context/werehouse/WerehouseState";
 
 function App() {
   return (
     <div>
-      <GlobalState>
-        <PlantState>
           <FieldState>
+      <GlobalState>
+        <WerehouseState>
+        <PlantState>
+
             <BrowserRouter>
               <Navbar />
               <Switch>
                 <Route path={"/"} exact component={Home} />
                 <Route path={"/shop"} exact component={Shop} />
+                <Route path={"/werehouse"} exact component={Werehouse} />
                 <Route path={"/chosePlant"} exact component={ChosePlants} />
               </Switch>
             </BrowserRouter>
-          </FieldState>
         </PlantState>
+        </WerehouseState>
       </GlobalState>
+          </FieldState>
     </div>
   );
 }

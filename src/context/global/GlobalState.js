@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "./globalContext";
 import { globalReducer } from "./globalReducer";
 import { useReducer } from "react";

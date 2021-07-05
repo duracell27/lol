@@ -6,7 +6,7 @@ import cls from "./field.module.css";
 
 export const Field = ({ fieldInfo }) => {
   const history = useHistory();
-  const { changeAction } = useContext(FieldContext);
+  const { changeAction, setPlantId } = useContext(FieldContext);
   const { defPlant, defManuring, addExp } = useContext(GlobalContext);
   const actionNames = {
     0: defPlant ? `Посадити ${defPlant.name}` : `Посадити`,
@@ -36,6 +36,8 @@ export const Field = ({ fieldInfo }) => {
           if (actionNames[fieldInfo.actionId] === "Посадити") {
             history.push("/chosePlant");
           } else {
+            console.log(fieldInfo)
+            setPlantId(defPlant.id, fieldInfo.id)
             addExp(defPlant.exp[fieldInfo.actionId]);
             changeAction(fieldInfo.id);
           }
