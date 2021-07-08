@@ -25,7 +25,7 @@ const Plant = ({ plant }) => {
         <p>{`Час до поливу: ${plant.timeWater} сек.`}</p>
         <p>{`Час до удобрювання: ${plant.timeManuring} сек.`}</p>
       </div>
-      <button onClick={plantClickHandler}>Вибрати</button>
+      <button className={cls.button} onClick={plantClickHandler}>Вибрати</button>
     </div>
   );
 };
@@ -44,7 +44,7 @@ const Manur = ({ manur }) => {
         <h3>{manur.name}</h3>
         <p>{`Зменшеня часу до урожаю: ${manur.timeReduce} сек.`}</p>
       </div>
-      <button onClick={() => setDefaultManur(manur.id)}>Вибрати</button>
+      <button className={cls.button} onClick={() => setDefaultManur(manur.id)}>Вибрати</button>
     </div>
   );
 };

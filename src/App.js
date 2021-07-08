@@ -9,10 +9,11 @@ import ChosePlants from "./pages/ChosePlants";
 import { PlantState } from "./context/plant/PlantState";
 import Werehouse from './pages/Werehouse'
 import { WerehouseState } from "./context/werehouse/WerehouseState";
+import cls from './app.module.css'
 
 function App() {
   return (
-    <div>
+    <div className={cls.container}>
           <FieldState>
       <GlobalState>
         <WerehouseState>

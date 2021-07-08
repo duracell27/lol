@@ -1,11 +1,25 @@
 .field{
-    width: 300px;
-    height: 100px;
+    display: flex;
+    height: 70px;
+    background-color: #a5e6cb;
     border: 1px solid rgb(0, 0, 0);
     padding: 10px;
     margin: 10px;
 }
 
-h2{
+.rightside{
+    padding-left: 10px;
+}
+
+.h2{
     margin: 0;
+    margin-bottom: 10px;
+}
+.button{
+    padding: 5px 10px;
+    background-color: #bf9574;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
 }

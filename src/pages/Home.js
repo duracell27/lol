@@ -3,14 +3,18 @@ import { FieldContext } from "../context/field/fieldContext";
 import { Field } from "../componets/Field";
 import { GlobalContext } from "../context/global/globalContext";
 import {Link} from 'react-router-dom'
+import cls from './home.module.css'
 function Home() {
   const { fields, addField } = useContext(FieldContext);
-  const { gold, exp, defPlant, defManuring } = useContext(GlobalContext);
+  const { gold, exp, lvl,lvlPercent, defPlant, defManuring } = useContext(GlobalContext);
   return (
     <div>
-      <h1>Home page</h1>
+      <h1>Ваша Ферма</h1>
+      <div className={cls.userStats}>
       <p>Золото: {gold}</p>
       <p>Досвід: {exp}</p>
+      <p>Рівень: {lvl}({lvlPercent}%)</p>
+      </div>
       {fields.map((field) => (
         <Field key={field.id} fieldInfo={field}/>
       ))}

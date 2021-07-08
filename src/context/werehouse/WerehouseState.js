@@ -18,6 +18,7 @@ export const WerehouseState = ({ children }) => {
         name: plant.name,
         quantity: plant.harvestQuantity,
         price: plant.sellPrice,
+        img: plant.img
       };
       const newObj = [...state.werehouse, newObj1];
 
@@ -34,11 +35,17 @@ export const WerehouseState = ({ children }) => {
     }
   };
 
+  const removeFromWerehouse = (plantName) => {
+      const newObj = state.werehouse.filter((item)=>item.name !== plantName)
+      dispatch({ type: ADD_TO_WEREHOUSE, newObj });
+  }
+
   return (
     <WerehouseContext.Provider
       value={{
         werehouse: state.werehouse,
         addToWerehouse,
+        removeFromWerehouse
       }}
     >
       {children}

@@ -18,3 +18,10 @@ h3{
     margin: 0;
     padding: 0;
 }
+.button{
+    padding: 5px 10px;
+    background-color: #bf9574;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
