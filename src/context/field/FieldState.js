@@ -1,14 +1,14 @@
 import React, { useReducer } from "react";
 import { FieldContext } from "./fieldContext";
 import { fieldReducer } from "./fieldReducer";
-import { ADD_FIELD, CHANGE_ACTION_ID, SET_PLANT_ID } from "../types";
+import { ADD_FIELD, CHANGE_ACTION_ID, SET_MANUR, SET_PLANT } from "../types";
 
 export const FieldState = ({ children }) => {
   const initialState = {
     fields: [
-      { id: 1, actionId: 0, plantId: null, manuringId: null },
-      { id: 2, actionId: 0, plantId: null, manuringId: null },
-      { id: 3, actionId: 0, plantId: null, manuringId: null },
+      { id: 1, actionId: 0, plant: null, manuring: null },
+      { id: 2, actionId: 0, plant: null, manuring: null },
+      { id: 3, actionId: 0, plant: null, manuring: null },
     ],
   };
 
@@ -18,6 +18,8 @@ export const FieldState = ({ children }) => {
     const newField = {
       id: state.fields.length + 1,
       actionId: 0,
+      plant: null, 
+      manuring: null
     };
 
     dispatch({ type: ADD_FIELD, newField });
@@ -25,7 +27,6 @@ export const FieldState = ({ children }) => {
 
   const changeAction = (id) => {
     const changedFields = state.fields.map((field) => {
-      console.log(field.actionId)
       if (field.id === id) {
         if (field.actionId < 4) {
           field.actionId++;
@@ -39,14 +40,25 @@ export const FieldState = ({ children }) => {
     dispatch({ type: CHANGE_ACTION_ID, changedFields });
   };
 
-  const setPlantId = (plantDefId, fieldId) => {
-    
-    dispatch({type: SET_PLANT_ID, plantDefId, fieldId})
+  const addPlantFromDefPlant = (activePlant) => {
+    const newFields = state.fields.map((field)=>{
+      field.plant = activePlant
+      return field
+    })
+    dispatch({type: SET_PLANT, newFields})
+  }
+
+  const addManuringFromDefManuring = (activeManur) => {
+    const newFields = state.fields.map((field)=>{
+      field.manuring = activeManur
+      return field
+    })
+    dispatch({type: SET_MANUR, newFields})
   }
 
   return (
     <FieldContext.Provider
-      value={{ addField, changeAction, setPlantId, fields: state.fields }}
+      value={{ addField, changeAction, addPlantFromDefPlant, addManuringFromDefManuring, fields: state.fields }}
     >
       {children}
     </FieldContext.Provider>

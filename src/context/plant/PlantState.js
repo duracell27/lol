@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from "react";
+import { FieldContext } from "../field/fieldContext";
 import { GlobalContext } from "../global/globalContext";
 import { PlantContext } from "./plantContext";
 import { plantReducer } from "./plantReducer";
@@ -19,7 +20,10 @@ export const PlantState = ({ children }) => {
           2: 20,
           3: 50,
           4: 10,
-        }
+        },
+        harvestQuantity: 2,
+        sellPrice: 20,
+        buyPrice: 16
       },
       {
         id: 1,
@@ -34,7 +38,10 @@ export const PlantState = ({ children }) => {
           2: 50,
           3: 80,
           4: 30,
-        }
+        },
+        harvestQuantity: 2,
+        sellPrice: 30,
+        buyPrice: 24
       },
     ],
     manuring: [
@@ -54,14 +61,17 @@ export const PlantState = ({ children }) => {
   };
   const [state, dispatch] = useReducer(plantReducer, initialState);
   const { setActivePlant, setActiveManur } = useContext(GlobalContext);
+  const { addPlantFromDefPlant, addManuringFromDefManuring } = useContext(FieldContext);
 
   const setDefaultPlant = (id) => {
     const activePlant = state.plants[id];
+    addPlantFromDefPlant(activePlant)
     setActivePlant(activePlant);
   };
 
   const setDefaultManur = (id) => {
     const activeManur = state.manuring[id];
+    addManuringFromDefManuring(activeManur)
     setActiveManur(activeManur);
   };
 

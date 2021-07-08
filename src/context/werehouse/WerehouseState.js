@@ -1,18 +1,47 @@
-import { useReducer } from "react"
-import { WerehouseContext } from "./werehouseContext"
-import { werehouseReducer } from "./werehouseReducer"
+import { useReducer } from "react";
+import { ADD_TO_WEREHOUSE } from "../types";
+import { WerehouseContext } from "./werehouseContext";
+import { werehouseReducer } from "./werehouseReducer";
 
-export const WerehouseState = ({children}) => {
+export const WerehouseState = ({ children }) => {
+  const initialState = {
+    werehouse: [],
+  };
 
-    const initialState = {
-        werehouse: []
+  const [state, dispatch] = useReducer(werehouseReducer, initialState);
+
+  const addToWerehouse = (plant) => {
+    const filtered = state.werehouse.filter((item) => item.name === plant.name);
+
+    if (filtered.length === 0) {
+      const newObj1 = {
+        name: plant.name,
+        quantity: plant.harvestQuantity,
+        price: plant.sellPrice,
+      };
+      const newObj = [...state.werehouse, newObj1];
+
+      dispatch({ type: ADD_TO_WEREHOUSE, newObj });
+    } else {
+      const newObj = state.werehouse.map((item) => {
+        if (item.name === plant.name) {
+          item.quantity += plant.harvestQuantity;
+        }
+        return item;
+      });
+
+      dispatch({ type: ADD_TO_WEREHOUSE, newObj });
     }
+  };
 
-    const [state, dispatch] = useReducer(werehouseReducer, initialState)
-
-    return (<WerehouseContext.Provider value={{
-        werehouse: state.werehouse
-    }}>
-        {children}
-    </WerehouseContext.Provider>)
-}
+  return (
+    <WerehouseContext.Provider
+      value={{
+        werehouse: state.werehouse,
+        addToWerehouse,
+      }}
+    >
+      {children}
+    </WerehouseContext.Provider>
+  );
+};
