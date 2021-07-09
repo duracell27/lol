@@ -69,6 +69,7 @@ export const GlobalState = ({ children }) => {
       value={{
         gold: state.gold,
         exp: state.exp,
+        expNext: upLvl[state.lvl],
         lvl: state.lvl,
         defPlant: state.defPlant,
         defManuring: state.defManuring,

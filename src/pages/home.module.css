@@ -1,8 +1,41 @@
 .userStats{
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .userStats p{
     padding: 7px;
     background-color: #6454ac;
+    border: 1px solid #7f72b6;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.icon{
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+}
+.greenField{
+    background-color: #a5e6cb;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 10px;
+    margin: 10px;
+}
+
+.button{
+    padding: 5px 10px;
+    background-color: #bf9574;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.h1{
+    margin: 10px;
+    text-align: center;
 }

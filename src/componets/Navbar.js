@@ -1,11 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+import cls from './navbar.module.css'
 
 function Navbar() {
   return (
-    <div>
-      <NavLink to={'/'}>Головна</NavLink><br/>
-      <NavLink to={'/werehouse'}>Склад</NavLink><br/>
+    <div className={cls.navbar}>
+      <NavLink to={'/'}>Головна</NavLink>
+      <NavLink to={'/werehouse'}>Склад</NavLink>
     </div>
   );
 }
