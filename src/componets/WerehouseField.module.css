@@ -14,3 +14,16 @@ h5{
     margin: 0;
     margin-bottom: 2px;
 }
+
+.button{
+    padding: 5px 10px;
+    background-color: #bf9574;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.icon{
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+}

@@ -12,7 +12,7 @@ export const PlantState = ({ children }) => {
         name: "Горох",
         timeHarvest: 60,
         timeWater: 10,
-        timeManuring: 25,
+        timeManuring: 15,
         img: "goroh.jpg",
         exp:{
           0: 30,
@@ -50,12 +50,14 @@ export const PlantState = ({ children }) => {
         name: "Салітра",
         timeReduce: 20,
         img: "salitra.png",
+        buyPrice: 5
       },
       {
         id: 1,
         name: "Компост",
         timeReduce: 30,
         img: "kompost.png",
+        buyPrice: 15
       },
     ],
   };

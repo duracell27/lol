@@ -5,8 +5,13 @@ import { GlobalContext } from "../context/global/globalContext";
 import {Link} from 'react-router-dom'
 import cls from './home.module.css'
 function Home() {
-  const { fields, addField } = useContext(FieldContext);
-  const { gold, exp, expNext, lvl,lvlPercent, defPlant, defManuring } = useContext(GlobalContext);
+  const { fields, addField, fieldCosts } = useContext(FieldContext);
+  const { gold, exp, expNext, lvl,lvlPercent, defPlant, defManuring,removeGold } = useContext(GlobalContext);
+  const buyFieldHandler = () =>{
+    if(removeGold(fieldCosts[fields.length])){
+      addField();
+    }
+  }
   return (
     <div>
       <h1 className={cls.h1}>Ваша Ферма</h1>
@@ -19,7 +24,7 @@ function Home() {
         <Field key={field.id} fieldInfo={field}/>
       ))}
       <div className={cls.greenField}>
-        <button className={cls.button} onClick={addField}><img  className={cls.icon} src={'img/cart.png'} alt={'someImg'}/>Купити грядку</button>
+        <button className={cls.button} onClick={buyFieldHandler}><img  className={cls.icon} src={'img/cart.png'} alt={'someImg'}/>Купити грядку за <img className={cls.icon} src={'img/money.png'} alt={'icon'}/>{fieldCosts[fields.length]}</button>
 
       </div>
       <div className={cls.greenField}>

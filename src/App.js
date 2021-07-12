@@ -14,8 +14,8 @@ import cls from './app.module.css'
 function App() {
   return (
     <div className={cls.container}>
-          <FieldState>
       <GlobalState>
+          <FieldState>
         <WerehouseState>
         <PlantState>
 
@@ -30,8 +30,8 @@ function App() {
             </BrowserRouter>
         </PlantState>
         </WerehouseState>
-      </GlobalState>
           </FieldState>
+      </GlobalState>
     </div>
   );
 }

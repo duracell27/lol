@@ -12,11 +12,46 @@ export const Field = ({ fieldInfo }) => {
   const { addToWerehouse } = useContext(WerehouseContext);
 
   const actionNames = {
-    0: fieldInfo.plant ? `Посадити ${fieldInfo.plant.name}` : `Посадити`,
-    1: "Полити",
-    2: fieldInfo.manuring ? `Удобрити ${fieldInfo.manuring.name}` : `Удобрити`,
-    3: "Зібрати",
-    4: "Вскопати",
+    0: fieldInfo.plant ? (
+      <div>
+        <img className={cls.icon} src={"/img/seat.png"} alt={"icon"} />
+        Посадити {fieldInfo.plant.name}
+      </div>
+    ) : (
+      <div>
+        <img className={cls.icon} src={"/img/seat.png"} alt={"icon"} />
+        Посадити
+      </div>
+    ),
+    1: (
+      <div>
+        <img className={cls.icon} src={"/img/water.png"} alt={"icon"} />
+        Полити
+      </div>
+    ),
+    2: fieldInfo.manuring ? (
+      <div>
+        <img className={cls.icon} src={"/img/soil.png"} alt={"icon"} />
+        Удобрити {fieldInfo.manuring.name}
+      </div>
+    ) : (
+      <div>
+        <img className={cls.icon} src={"/img/soil.png"} alt={"icon"} />
+        Удобрити
+      </div>
+    ),
+    3: (
+      <div>
+        <img className={cls.icon} src={"/img/harvest.png"} alt={"icon"} />
+        Зібрати
+      </div>
+    ),
+    4: (
+      <div>
+        <img className={cls.icon} src={"/img/dig.png"} alt={"icon"} />
+        Вскопати
+      </div>
+    ),
   };
 
   const [disable, setDisable] = useState(false);
@@ -65,22 +100,23 @@ export const Field = ({ fieldInfo }) => {
           className={cls.button}
           onClick={() => {
             if (
-              actionNames[fieldInfo.actionId] === "Посадити" ||
-              actionNames[fieldInfo.actionId] === "Удобрити"
+              fieldInfo.plant === null ||
+              (fieldInfo.manuring === null && fieldInfo.actionId === 2)
             ) {
               history.push("/chosePlant");
             } else {
               if (fieldInfo.actionId === 0) {
-                removeGold(fieldInfo.plant.buyPrice);
-                settimePlant(Math.round(new Date() / 1000));
-                const chekForWaterButton =
-                  timePlant +
-                  fieldInfo.plant.timeWater -
-                  Math.round(new Date() / 1000);
-                if (chekForWaterButton > 0) {
-                  timer(chekForWaterButton);
+                if (removeGold(fieldInfo.plant.buyPrice)) {
+                  settimePlant(Math.round(new Date() / 1000));
+                  const chekForWaterButton =
+                    timePlant +
+                    fieldInfo.plant.timeWater -
+                    Math.round(new Date() / 1000);
+                  if (chekForWaterButton > 0) {
+                    timer(chekForWaterButton);
+                  }
+                  timer(fieldInfo.plant.timeWater);
                 }
-                timer(fieldInfo.plant.timeWater);
               }
               if (fieldInfo.actionId === 1) {
                 const chekForManuringButton =
@@ -92,13 +128,16 @@ export const Field = ({ fieldInfo }) => {
                 }
               }
               if (fieldInfo.actionId === 2) {
-                removeGold(fieldInfo.manuring.buyPrice);
-                const chekForHarvestButton =
-                  timePlant +
-                  fieldInfo.plant.timeHarvest -
-                  Math.round(new Date() / 1000 + fieldInfo.manuring.timeReduce);
-                if (chekForHarvestButton > 0) {
-                  timer(chekForHarvestButton);
+                if (removeGold(fieldInfo.manuring.buyPrice)) {
+                  const chekForHarvestButton =
+                    timePlant +
+                    fieldInfo.plant.timeHarvest -
+                    Math.round(
+                      new Date() / 1000 + fieldInfo.manuring.timeReduce
+                    );
+                  if (chekForHarvestButton > 0) {
+                    timer(chekForHarvestButton);
+                  }
                 }
               }
               if (fieldInfo.actionId === 3) {
@@ -109,8 +148,13 @@ export const Field = ({ fieldInfo }) => {
             }
           }}
         >
-          {actionNames[fieldInfo.actionId]}{" "}
-          {disableTime ? `${disableTime} сек.` : null}
+          {disableTime ? (
+            <div className={cls.displayFlex}>
+              {actionNames[fieldInfo.actionId]}&nbsp;{disableTime} сек.
+            </div>
+          ) : (
+            actionNames[fieldInfo.actionId]
+          )}
         </button>
       </div>
     </div>

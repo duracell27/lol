@@ -18,9 +18,9 @@ export const WerehouseField = ({ WerehouseFieldInfo }) => {
       <div className={cls.rightside}>
         <h3>{`${WerehouseFieldInfo.name}`}</h3>
         <h5>{`Кількість: ${WerehouseFieldInfo.quantity}`}</h5>
-        <button onClick={clickHandler}>{`Продати за ${
+        <button className={cls.button} onClick={clickHandler}>Продати за <img className={cls.icon} src={'img/money.png'} alt={'icon'}/> {
           WerehouseFieldInfo.quantity * WerehouseFieldInfo.price
-        }`}</button>
+        }</button>
       </div>
     </div>
   );

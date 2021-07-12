@@ -61,7 +61,13 @@ export const GlobalState = ({ children }) => {
   }
 
   const removeGold = (gold) => {
-    dispatch({type: REMOVE_GOLD, gold})
+    if(state.gold - gold > 0){
+      dispatch({type: REMOVE_GOLD, gold})
+      return true
+    }else{
+      alert('У вас не достатньо грошей')
+      return false
+    }    
   }
 
   return (
