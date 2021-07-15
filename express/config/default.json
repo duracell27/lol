@@ -1,0 +1,5 @@
+{
+    "port" : 5000,
+    "mongoUri" : "mongodb+srv://duracell:12345qwerty@farm.5hg3z.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret" : "shmidtFarm"
+}
