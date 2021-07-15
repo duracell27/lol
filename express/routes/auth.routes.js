@@ -17,11 +17,11 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const erorrs = validationResult(req);
-      if (!erorrs.isEmpty()) {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ erorrs: erorrs.array(), message: "Не коректні дані при геєстрації" });
+          .json({ errors: errors.array(), message: "Не коректні дані при геєстрації" });
       }
       const { email, password } = req.body;
 
@@ -52,11 +52,11 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const erorrs = validationResult(req);
-      if (!erorrs.isEmpty()) {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ erorrs: erorrs.array(), message: "Не коректні дані при вході" });
+          .json({ errors: errors.array(), message: "Не коректні дані при вході" });
       }
       const { email, password } = req.body;
       const user = await User.findOne({ email: email });

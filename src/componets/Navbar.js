@@ -7,6 +7,8 @@ function Navbar() {
     <div className={cls.navbar}>
       <NavLink to={'/'}>Головна</NavLink>
       <NavLink to={'/werehouse'}>Склад</NavLink>
+      <NavLink to={'/login'}>Логін</NavLink>
+      <NavLink to={'/register'}>Реєстрація</NavLink>
     </div>
   );
 }
