@@ -24,7 +24,7 @@ router.post(
           .json({ errors: errors.array(), message: "Не коректні дані при геєстрації" });
       }
       const { email, password } = req.body;
-
+      
       const candidate = await User.findOne({ email: email });
 
       if (candidate) {
