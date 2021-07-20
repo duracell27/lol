@@ -1,6 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
+import { authContext } from '../context/auth/authContext';
 import { useHttp } from '../hooks/http.hook';
+
 function Register() {
+  const auth = useContext(authContext)
    const [form, setFrom] = useState({email: '', password: ''})
 
    const {loading, errors, request, clearError} = useHttp()
@@ -25,12 +28,21 @@ function Register() {
        }
    }
 
+   const loginHandler = async () =>{
+    try {
+        const data = await request('api/auth/login', 'POST', {...form})
+        auth.login(data.token, data.userId)
+    } catch (error) {
+        
+    }
+}
+
   return (
     <div>
       <h1>Register page</h1>
       <input onChange={changehandler} id="email" name="email" type='email' placeholder='Введіть email' value={form.email}/>
       <input onChange={changehandler} id="password" name="password" type='password' placeholder='Введіть пароль' value={form.password}/>
-      <button disabled={loading}>Увійти</button>
+      <button onClick={loginHandler} disabled={loading}>Увійти</button>
       <button onClick={registerHandler} disabled={loading}>Зареєструватися</button>
     </div>
   );

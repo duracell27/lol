@@ -21,7 +21,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ errors: errors.array(), message: "Не коректні дані при геєстрації" });
+          .json({ errors: errors.array(), message: "Не коректні дані при реєстрації" });
       }
       const { email, password } = req.body;
       
