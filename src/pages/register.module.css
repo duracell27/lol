@@ -1,0 +1,30 @@
+.h1{
+    text-align: center;
+}
+
+.h2{
+    text-align: center;
+}
+
+.input{
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    width: 95%;
+}
+
+.button{
+    width: 44%;
+    padding: 7px 13px;
+    margin: 10px;
+    background-color: #bf9574;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.wrapper{
+    background-color: #a5e6cb;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin: 10px;
+}

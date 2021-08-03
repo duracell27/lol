@@ -1,6 +1,7 @@
 import React, { useState,useEffect, useContext } from 'react';
 import { authContext } from '../context/auth/authContext';
 import { useHttp } from '../hooks/http.hook';
+import cls from './register.module.css'
 
 function Register() {
   const auth = useContext(authContext)
@@ -38,12 +39,13 @@ function Register() {
 }
 
   return (
-    <div>
-      <h1>Register page</h1>
-      <input onChange={changehandler} id="email" name="email" type='email' placeholder='Введіть email' value={form.email}/>
-      <input onChange={changehandler} id="password" name="password" type='password' placeholder='Введіть пароль' value={form.password}/>
-      <button onClick={loginHandler} disabled={loading}>Увійти</button>
-      <button onClick={registerHandler} disabled={loading}>Зареєструватися</button>
+    <div className={cls.wrapper}>
+      <h1 className={cls.h1}>Вітаємо фермер!</h1>
+      <h2 className={cls.h2}>Зареєструйтесь або увійдіть</h2>
+      <input className={cls.input} onChange={changehandler} id="email" name="email" type='email' placeholder='Введіть email' value={form.email}/>
+      <input className={cls.input} onChange={changehandler} id="password" name="password" type='password' placeholder='Введіть пароль' value={form.password}/>
+      <button className={cls.button} onClick={loginHandler} disabled={loading}>Увійти</button>
+      <button className={cls.button} onClick={registerHandler} disabled={loading}>Зареєструватися</button>
     </div>
   );
 }

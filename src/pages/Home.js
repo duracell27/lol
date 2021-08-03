@@ -1,38 +1,74 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FieldContext } from "../context/field/fieldContext";
 import { Field } from "../componets/Field";
 import { GlobalContext } from "../context/global/globalContext";
-import {Link} from 'react-router-dom'
-import cls from './home.module.css'
+import { Link } from "react-router-dom";
+import cls from "./home.module.css";
+
 function Home() {
   const { fields, addField, fieldCosts } = useContext(FieldContext);
-  const { gold, exp, expNext, lvl,lvlPercent, defPlant, defManuring,removeGold } = useContext(GlobalContext);
-  const buyFieldHandler = () =>{
-    if(removeGold(fieldCosts[fields.length])){
+  const {
+    gold,
+    exp,
+    expNext,
+    lvl,
+    lvlPercent,
+    defPlant,
+    defManuring,
+    removeGold,
+  } = useContext(GlobalContext);
+  
+  const buyFieldHandler = () => {
+    if (removeGold(fieldCosts[fields.length])) {
       addField();
     }
-  }
+  };
   return (
     <div>
       <h1 className={cls.h1}>Ваша Ферма</h1>
       <div className={cls.userStats}>
-      <p><img  className={cls.icon} src={'img/money.png'} alt={'someImg'}/> Золото: {gold}</p>
-      <p><img  className={cls.icon} src={'img/experience.png'} alt={'someImg'}/> Досвід: {exp} / {expNext}</p>
-      <p><img  className={cls.icon} src={'img/user.png'} alt={'someImg'}/> Рівень: {lvl} ({lvlPercent}%)</p>
+        <p>
+          <img className={cls.icon} src={"img/money.png"} alt={"someImg"} />{" "}
+          Золото: {gold}
+        </p>
+        <p>
+          <img
+            className={cls.icon}
+            src={"img/experience.png"}
+            alt={"someImg"}
+          />{" "}
+          Досвід: {exp} / {expNext}
+        </p>
+        <p>
+          <img className={cls.icon} src={"img/user.png"} alt={"someImg"} />{" "}
+          Рівень: {lvl} ({lvlPercent}%)
+        </p>
       </div>
       {fields.map((field) => (
-        <Field key={field.id} fieldInfo={field}/>
+        <Field key={field.id} fieldInfo={field} />
       ))}
       <div className={cls.greenField}>
-        <button className={cls.button} onClick={buyFieldHandler}><img  className={cls.icon} src={'img/cart.png'} alt={'someImg'}/>Купити грядку за <img className={cls.icon} src={'img/money.png'} alt={'icon'}/>{fieldCosts[fields.length]}</button>
-
+        <button className={cls.button} onClick={buyFieldHandler}>
+          <img className={cls.icon} src={"img/cart.png"} alt={"someImg"} />
+          Купити грядку за{" "}
+          <img className={cls.icon} src={"img/money.png"} alt={"icon"} />
+          {fieldCosts[fields.length]}
+        </button>
       </div>
       <div className={cls.greenField}>
-      
         <p>
-        <Link to="/chosePlant"><img className={cls.icon}  src={'img/seat.png'} alt={'someImg'}/>Змінити рослину {defPlant ? defPlant.name: null}</Link></p>
-          
-        <p><Link to="/chosePlant"><img className={cls.icon}  src={'img/soil.png'} alt={'someImg'}/>Змінити удобрення  {defManuring ? defManuring.name : null}</Link></p>
+          <Link to="/chosePlant">
+            <img className={cls.icon} src={"img/seat.png"} alt={"someImg"} />
+            Змінити рослину {defPlant ? defPlant.name : null}
+          </Link>
+        </p>
+
+        <p>
+          <Link to="/chosePlant">
+            <img className={cls.icon} src={"img/soil.png"} alt={"someImg"} />
+            Змінити удобрення {defManuring ? defManuring.name : null}
+          </Link>
+        </p>
       </div>
     </div>
   );

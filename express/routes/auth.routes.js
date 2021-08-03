@@ -2,7 +2,7 @@ const { Router } = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("./../models/User");
 const { check, validationResult } = require("express-validator");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const config = require("config");
 process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
 const router = Router();
@@ -21,10 +21,13 @@ router.post(
       if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ errors: errors.array(), message: "Не коректні дані при реєстрації" });
+          .json({
+            errors: errors.array(),
+            message: "Не коректні дані при реєстрації",
+          });
       }
       const { email, password } = req.body;
-      
+
       const candidate = await User.findOne({ email: email });
 
       if (candidate) {
@@ -33,7 +36,13 @@ router.post(
 
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      const user = new User({ email: email, password: hashedPassword });
+      const user = new User({
+        email: email,
+        password: hashedPassword,
+        gold: 1000,
+        exp: 0,
+        lvl: 1,
+      });
 
       await user.save();
 
@@ -48,7 +57,7 @@ router.post(
   "/login",
   [
     check("email", "Введіть коректний email").normalizeEmail().isEmail(),
-    check("password", "Введіть пароль").exists()
+    check("password", "Введіть пароль").exists(),
   ],
   async (req, res) => {
     try {
@@ -56,7 +65,10 @@ router.post(
       if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ errors: errors.array(), message: "Не коректні дані при вході" });
+          .json({
+            errors: errors.array(),
+            message: "Не коректні дані при вході",
+          });
       }
       const { email, password } = req.body;
       const user = await User.findOne({ email: email });
@@ -64,18 +76,30 @@ router.post(
       if (!user) {
         return res.status(400).json({ message: "Такий фермер не знайдений" });
       }
-    
-      const isMatch = await bcrypt.compare(password, user.password)
-      if(!isMatch){
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
         res.status(400).json({ message: "Не правильний пароль" });
       }
 
-      const token = jwt.sign({userId: user.id}, config.get('jwtSecret'),{expiresIn: '1h'})
-      res.json({token: token, userId: user.id})
+      const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
+        expiresIn: "1h",
+      });
+      res.json({ token: token, userId: user.id });
     } catch (e) {
       res.status(500).json({ message: "Щось пішло не так, попробуйте знову" });
     }
   }
 );
+
+router.get('/userInfo', async (req, res) => {
+  try{
+    console.log(req.body)
+    const user = await User.findOne({ _id: req.body.userId });
+    console.log('user_> ', user)
+  }catch(e){
+    
+  }
+})
 
 module.exports = router;

@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "./globalContext";
 import { globalReducer } from "./globalReducer";
 import { useReducer } from "react";
 import { ADD_EXP, ADD_GOLD, REMOVE_GOLD, SET_DEFAULT_MANUR, SET_DEFAULT_PLANT, SET_LVL_PERCENT, UP_LVL } from "../types";
+import { authContext } from "../auth/authContext";
+import { useHttp } from "../../hooks/http.hook";
+
 
 export const GlobalState = ({ children }) => {
+  const {userId} = useContext(authContext)
+  const { request } = useHttp()
+
+  const [lol, setlol] = useState(1)
+  const getInfo = async() => {
+    try {
+      console.log('here')
+      const data = await request("api/auth/userInfo", "GET", {userId});
+      console.log('here1')
+      console.log(data);
+      console.log('here2')
+    } catch (error) {}
+  }
+  useEffect(()=>{
+    getInfo()
+  },[])
   const initialState = {
     gold: 1000,
     exp: 0,
